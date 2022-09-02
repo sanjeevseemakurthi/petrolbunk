@@ -11,4 +11,5 @@ public interface pericularsRepository   extends JpaRepository<perticulars,Long> 
     List<perticulars> findByAccountidAndDate(Long accountid, LocalDate date);
     List<perticulars> findByDate(LocalDate date);
     List<perticulars> findByDateGreaterThanAndAccountid(LocalDate date,Long accountid);
+    List<perticulars> findByAccountid(Long accountid);
 }
