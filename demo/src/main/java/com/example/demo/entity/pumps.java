@@ -17,10 +17,33 @@ public class pumps {
     private Long id;
     private Long number;
     private String tank;
-    private String Product;
-    private Long Price;
+    private String product;
+    private Long price;
     private Long latestclosedreading;
     private Long latestopenreading;
+    private Long cid;
+
+    public Long getCid() {
+        return cid;
+    }
+
+    @Override
+    public String toString() {
+        return "pumps{" +
+                "id=" + id +
+                ", number=" + number +
+                ", tank='" + tank + '\'' +
+                ", product='" + product + '\'' +
+                ", price=" + price +
+                ", latestclosedreading=" + latestclosedreading +
+                ", latestopenreading=" + latestopenreading +
+                ", cid=" + cid +
+                '}';
+    }
+
+    public void setCid(Long cid) {
+        this.cid = cid;
+    }
     public Long getId() {
         return id;
     }
@@ -46,19 +69,19 @@ public class pumps {
     }
 
     public String getProduct() {
-        return Product;
+        return product;
     }
 
     public void setProduct(String product) {
-        Product = product;
+        this.product = product;
     }
 
     public Long getPrice() {
-        return Price;
+        return price;
     }
 
     public void setPrice(Long price) {
-        Price = price;
+        this.price = price;
     }
 
     public Long getLatestclosedreading() {
@@ -77,16 +100,4 @@ public class pumps {
         this.latestopenreading = latestopenreading;
     }
 
-    @Override
-    public String toString() {
-        return "pumps{" +
-                "id=" + id +
-                ", number=" + number +
-                ", tank='" + tank + '\'' +
-                ", Product='" + Product + '\'' +
-                ", Price=" + Price +
-                ", latestclosedreading=" + latestclosedreading +
-                ", latestopenreading=" + latestopenreading +
-                '}';
-    }
 }

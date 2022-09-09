@@ -28,7 +28,36 @@ public class purchaseindent {
     private Long powerTaxable;
     private Long powerVat;
     private Long powerSslf;
+    private Long cid;
 
+    @Override
+    public String toString() {
+        return "purchaseindent{" +
+                "id=" + id +
+                ", date=" + date +
+                ", msTaxable=" + msTaxable +
+                ", msVat=" + msVat +
+                ", msSslf=" + msSslf +
+                ", hsdTaxable=" + hsdTaxable +
+                ", hsdVat=" + hsdVat +
+                ", hsdSslf=" + hsdSslf +
+                ", lubeTaxable=" + lubeTaxable +
+                ", lubeVat=" + lubeVat +
+                ", lubeSslf=" + lubeSslf +
+                ", powerTaxable=" + powerTaxable +
+                ", powerVat=" + powerVat +
+                ", powerSslf=" + powerSslf +
+                ", cid=" + cid +
+                '}';
+    }
+
+    public Long getCid() {
+        return cid;
+    }
+
+    public void setCid(Long cid) {
+        this.cid = cid;
+    }
     public Long getId() {
         return id;
     }
@@ -141,23 +170,4 @@ public class purchaseindent {
         this.powerSslf = powerSslf;
     }
 
-    @Override
-    public String toString() {
-        return "purchaseindent{" +
-                "id=" + id +
-                ", date=" + date +
-                ", msTaxable=" + msTaxable +
-                ", msVat=" + msVat +
-                ", msSslf=" + msSslf +
-                ", hsdTaxable=" + hsdTaxable +
-                ", hsdVat=" + hsdVat +
-                ", hsdSslf=" + hsdSslf +
-                ", lubeTaxable=" + lubeTaxable +
-                ", lubeVat=" + lubeVat +
-                ", lubeSslf=" + lubeSslf +
-                ", powerTaxable=" + powerTaxable +
-                ", powerVat=" + powerVat +
-                ", powerSslf=" + powerSslf +
-                '}';
-    }
 }

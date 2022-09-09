@@ -19,6 +19,38 @@ public class account {
     private  String phno;
     private LocalDate date;
     private Long balance;
+    private Long cid;
+    private boolean onlyadmin;
+
+    public boolean isOnlyadmin() {
+        return onlyadmin;
+    }
+
+    @Override
+    public String toString() {
+        return "account{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", phno='" + phno + '\'' +
+                ", date=" + date +
+                ", balance=" + balance +
+                ", cid=" + cid +
+                ", onlyadmin=" + onlyadmin +
+                '}';
+    }
+
+    public void setOnlyadmin(boolean onlyadmin) {
+        this.onlyadmin = onlyadmin;
+    }
+
+    public Long getCid() {
+        return cid;
+    }
+
+    public void setCid(Long cid) {
+        this.cid = cid;
+    }
+
     public Long getId() {
         return id;
     }
@@ -57,16 +89,6 @@ public class account {
 
     public void setBalance(Long balance) {
         this.balance = balance;
-    }
-    @Override
-    public String toString() {
-        return "account{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", phno='" + phno + '\'' +
-                ", date=" + date +
-                ", balance=" + balance +
-                '}';
     }
 
 }

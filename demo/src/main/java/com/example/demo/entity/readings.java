@@ -23,6 +23,31 @@ public class readings {
     private Long netsale;
     private Long amount;
     private LocalDate date;
+    private Long cid;
+
+    public Long getCid() {
+        return cid;
+    }
+
+    public void setCid(Long cid) {
+        this.cid = cid;
+    }
+
+    @Override
+    public String toString() {
+        return "readings{" +
+                "id=" + id +
+                ", pumpid=" + pumpid +
+                ", opening=" + opening +
+                ", closing=" + closing +
+                ", testing=" + testing +
+                ", price=" + price +
+                ", netsale=" + netsale +
+                ", amount=" + amount +
+                ", date=" + date +
+                ", cid=" + cid +
+                '}';
+    }
 
     public Long getId() {
         return id;
@@ -96,18 +121,4 @@ public class readings {
         this.date = date;
     }
 
-    @Override
-    public String toString() {
-        return "readings{" +
-                "id=" + id +
-                ", pumpid=" + pumpid +
-                ", opening=" + opening +
-                ", closing=" + closing +
-                ", testing=" + testing +
-                ", price=" + price +
-                ", netsale=" + netsale +
-                ", amount=" + amount +
-                ", date=" + date +
-                '}';
-    }
 }

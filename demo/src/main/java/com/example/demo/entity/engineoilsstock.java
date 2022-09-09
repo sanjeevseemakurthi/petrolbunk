@@ -15,6 +15,25 @@ public class engineoilsstock {
     private Long id;
     private String name;
     private Long qtyleft;
+    private Long cid;
+
+    public Long getCid() {
+        return cid;
+    }
+
+    @Override
+    public String toString() {
+        return "engineoilsstock{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", qtyleft=" + qtyleft +
+                ", cid=" + cid +
+                '}';
+    }
+
+    public void setCid(Long cid) {
+        this.cid = cid;
+    }
     public Long getId() {
         return id;
     }
@@ -39,12 +58,4 @@ public class engineoilsstock {
         this.qtyleft = qtyleft;
     }
 
-    @Override
-    public String toString() {
-        return "engineoilsstock{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", qtyleft=" + qtyleft +
-                '}';
-    }
 }

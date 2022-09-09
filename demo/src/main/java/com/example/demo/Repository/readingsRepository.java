@@ -10,4 +10,6 @@ import java.time.LocalDate;
 
 public interface readingsRepository extends JpaRepository<readings,Long> {
     List<readings> findAllByDate(LocalDate date);
+
+    List<readings> findAllByDateAndCid(LocalDate date, Long cid);
 }

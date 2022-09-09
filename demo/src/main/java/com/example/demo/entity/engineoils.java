@@ -22,7 +22,30 @@ public class engineoils {
     private Long rate;
     private Long amount;
     private Long eid;
+    private Long cid;
 
+    @Override
+    public String toString() {
+        return "engineoils{" +
+                "id=" + id +
+                ", date=" + date +
+                ", qtyleft=" + qtyleft +
+                ", sales=" + sales +
+                ", purchase=" + purchase +
+                ", rate=" + rate +
+                ", amount=" + amount +
+                ", eid=" + eid +
+                ", cid=" + cid +
+                '}';
+    }
+
+    public Long getCid() {
+        return cid;
+    }
+
+    public void setCid(Long cid) {
+        this.cid = cid;
+    }
     public Long getId() {
         return id;
     }
@@ -87,17 +110,4 @@ public class engineoils {
         this.eid = eid;
     }
 
-    @Override
-    public String toString() {
-        return "engineoils{" +
-                "id=" + id +
-                ", date=" + date +
-                ", qtyleft=" + qtyleft +
-                ", sales=" + sales +
-                ", purchase=" + purchase +
-                ", rate=" + rate +
-                ", amount=" + amount +
-                ", eid=" + eid +
-                '}';
-    }
 }

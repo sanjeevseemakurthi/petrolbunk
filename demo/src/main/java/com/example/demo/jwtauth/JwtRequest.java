@@ -12,7 +12,7 @@ public class JwtRequest {
 	private String username;
 	private String password;
 	private String role;
-
+	private Long cid;
 	public String getRole() {
 		return role;
 	}

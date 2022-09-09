@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface calibrationRepository extends JpaRepository<calibration,Long> {
     List<calibration> findAll();
+
+    List<calibration> findAllByCid(Long cid);
 }

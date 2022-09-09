@@ -14,6 +14,16 @@ public class userdata {
 	private String username;
 	private String  password;
 	private String role;
+	private Long cid;
+
+	public Long getCid() {
+		return cid;
+	}
+
+	public void setCid(Long cid) {
+		this.cid = cid;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -49,6 +59,7 @@ public class userdata {
 				", username='" + username + '\'' +
 				", password='" + password + '\'' +
 				", role='" + role + '\'' +
+				", cid=" + cid +
 				'}';
 	}
 }

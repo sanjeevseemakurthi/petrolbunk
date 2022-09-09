@@ -18,7 +18,26 @@ public class calibration {
     private LocalDate date;
     private LocalDate nextdate;
     private String discription;
+    private Long cid;
 
+    @Override
+    public String toString() {
+        return "calibration{" +
+                "id=" + id +
+                ", date=" + date +
+                ", nextdate=" + nextdate +
+                ", discription='" + discription + '\'' +
+                ", cid=" + cid +
+                '}';
+    }
+
+    public Long getCid() {
+        return cid;
+    }
+
+    public void setCid(Long cid) {
+        this.cid = cid;
+    }
     public Long getId() {
         return id;
     }
@@ -51,13 +70,4 @@ public class calibration {
         this.discription = discription;
     }
 
-    @Override
-    public String toString() {
-        return "calibration{" +
-                "id=" + id +
-                ", date=" + date +
-                ", nextdate=" + nextdate +
-                ", discription='" + discription + '\'' +
-                '}';
-    }
 }

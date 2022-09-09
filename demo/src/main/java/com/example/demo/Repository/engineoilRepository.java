@@ -8,4 +8,7 @@ import java.util.List;
 
 public interface engineoilRepository extends JpaRepository<engineoils,Long>{
     List<engineoils> findAllByDate(LocalDate date);
+
+    List<engineoils> findAllByDateAndCid(LocalDate date, Long cid);
+
 }

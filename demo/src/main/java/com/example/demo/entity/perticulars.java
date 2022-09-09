@@ -19,9 +19,32 @@ public class perticulars {
     private LocalDate date;
     private Long jama;
     private Long karchu;
+
+    @Override
+    public String toString() {
+        return "perticulars{" +
+                "id=" + id +
+                ", accountid=" + accountid +
+                ", date=" + date +
+                ", jama=" + jama +
+                ", karchu=" + karchu +
+                ", balance=" + balance +
+                ", discription='" + discription + '\'' +
+                ", cid=" + cid +
+                '}';
+    }
+
     private Long balance;
     private String discription;
+    private Long cid;
 
+    public Long getCid() {
+        return cid;
+    }
+
+    public void setCid(Long cid) {
+        this.cid = cid;
+    }
     public Long getId() {
         return id;
     }
@@ -78,16 +101,4 @@ public class perticulars {
         this.discription = discription;
     }
 
-    @Override
-    public String toString() {
-        return "perticulars{" +
-                "id=" + id +
-                ", accountid=" + accountid +
-                ", date=" + date +
-                ", jama=" + jama +
-                ", karchu=" + karchu +
-                ", balance=" + balance +
-                ", discription='" + discription + '\'' +
-                '}';
-    }
 }
