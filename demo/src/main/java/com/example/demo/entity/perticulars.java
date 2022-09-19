@@ -17,8 +17,8 @@ public class perticulars {
     private Long id;
     private Long accountid;
     private LocalDate date;
-    private Long jama;
-    private Long karchu;
+    private Double jama;
+    private Double karchu;
 
     @Override
     public String toString() {
@@ -34,7 +34,7 @@ public class perticulars {
                 '}';
     }
 
-    private Long balance;
+    private Double balance;
     private String discription;
     private Long cid;
 
@@ -69,27 +69,27 @@ public class perticulars {
         this.date = date;
     }
 
-    public Long getJama() {
+    public Double getJama() {
         return jama;
     }
 
-    public void setJama(Long jama) {
+    public void setJama(Double jama) {
         this.jama = jama;
     }
 
-    public Long getKarchu() {
+    public Double getKarchu() {
         return karchu;
     }
 
-    public void setKarchu(Long karchu) {
+    public void setKarchu(Double karchu) {
         this.karchu = karchu;
     }
 
-    public Long getBalance() {
+    public Double getBalance() {
         return balance;
     }
 
-    public void setBalance(Long balance) {
+    public void setBalance(Double balance) {
         this.balance = balance;
     }
 

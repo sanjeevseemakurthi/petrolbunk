@@ -19,8 +19,8 @@ public class engineoils {
     private Long qtyleft;
     private Long sales;
     private Long purchase;
-    private Long rate;
-    private Long amount;
+    private Double rate;
+    private Double amount;
     private Long eid;
     private Long cid;
 
@@ -86,19 +86,19 @@ public class engineoils {
         this.purchase = purchase;
     }
 
-    public Long getRate() {
+    public Double getRate() {
         return rate;
     }
 
-    public void setRate(Long rate) {
+    public void setRate(Double rate) {
         this.rate = rate;
     }
 
-    public Long getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(Long amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 

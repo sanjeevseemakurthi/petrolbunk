@@ -11,6 +11,7 @@ import com.example.demo.jwtauth.userdata;
 import com.example.demo.utils.nametype;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Field;
@@ -54,7 +55,7 @@ public class accountsController {
         }
         JSONObject result = new JSONObject();
         if (cash_date.size() != 0) {
-            result.put("cash", cash_date.get(0).getJama());
+            result.put("cash", cash_date.get(0).getBalance());
         } else {
             result.put("cash", 0);
         }
@@ -68,7 +69,7 @@ public class accountsController {
         String Token = authorization.replace("Bearer ", "");
         String username = jwtUtility.getUsernameFromToken(Token);
         userdata userdata = userdetailsRepository.findByUsername(username);
-        long cash = 0;
+        double cash = 0;
         List<perticulars> data = dateanddata.getData();
         LocalDate fordate = dateanddata.getDate();
         perticulars cash_perticular = new perticulars();
@@ -76,7 +77,7 @@ public class accountsController {
         for (perticulars eachdata : data) {
             Optional<account> eachaccount = accountsRepository.findByIdAndCid(eachdata.getAccountid(),userdata.getCid());
             if (!eachaccount.get().getName().equals("cash")) {
-                eachaccount.get().setBalance(eachaccount.get().getBalance() + eachdata.getJama() - eachdata.getKarchu());
+                eachaccount.get().setBalance(eachaccount.get().getBalance() - eachdata.getJama() + eachdata.getKarchu());
                 eachdata.setBalance(eachaccount.get().getBalance());
                 eachaccount.get().setCid(userdata.getCid());
                 eachdata.setCid(userdata.getCid());
@@ -88,12 +89,13 @@ public class accountsController {
             }
         }
         // for cash start
-        cash_perticular.setJama(cash);
-        cash_perticular.setKarchu(0l);
+        List<perticulars> previousdaycash = pericularsRepository.findByCidAndAccountidAndDate(userdata.getCid(),cash_perticular.getAccountid(),fordate.minusDays(1));
+        cash_perticular.setJama(cash );
+        cash_perticular.setKarchu(0d);
         Optional<account> eachaccount = accountsRepository.findByIdAndCid(cash_perticular.getAccountid(), userdata.getCid());
         account account_cash = eachaccount.get();
-        account_cash.setBalance(account_cash.getBalance() + cash_perticular.getJama());
-        cash_perticular.setBalance(account_cash.getBalance());
+        account_cash.setBalance(previousdaycash.get(0).getBalance() + cash);
+        cash_perticular.setBalance(previousdaycash.get(0).getBalance() + cash);
         account_cash.setCid(userdata.getCid());
         cash_perticular.setCid(userdata.getCid());
         accountsRepository.save(account_cash);
@@ -101,10 +103,10 @@ public class accountsController {
         // end for cash
         // change cash for next days
         if (onlycashonday != null) {
-            long diffrence = cash_perticular.getJama() - onlycashonday.getJama();
+            double diffrence = cash_perticular.getBalance() - onlycashonday.getBalance();
             List<perticulars> futuredatescash = pericularsRepository.findAllByCidAndDateGreaterThanAndAccountid(userdata.getCid(),fordate, cash_perticular.getAccountid());
             for (perticulars eachdata : futuredatescash) {
-                eachdata.setJama(eachdata.getJama() + diffrence);
+                eachdata.setBalance(eachdata.getBalance() + diffrence);
                 eachdata.setCid(userdata.getCid());
                 pericularsRepository.save(eachdata);
             }

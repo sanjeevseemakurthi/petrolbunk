@@ -19,9 +19,9 @@ public class readings {
     private Long opening;
     private Long closing;
     private Long testing;
-    private Long price;
-    private Long netsale;
-    private Long amount;
+    private Double price;
+    private Double netsale;
+    private Double amount;
     private LocalDate date;
     private Long cid;
 
@@ -89,27 +89,27 @@ public class readings {
         this.testing = testing;
     }
 
-    public Long getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public Long getNetsale() {
+    public Double getNetsale() {
         return netsale;
     }
 
-    public void setNetsale(Long netsale) {
+    public void setNetsale(Double netsale) {
         this.netsale = netsale;
     }
 
-    public Long getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(Long amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 

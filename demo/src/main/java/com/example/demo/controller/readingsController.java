@@ -42,7 +42,7 @@ public class readingsController {
         List<pumps> pumps  = PumpsRepository.findAllByCid(userdata.getCid());
         List <readings> datereadings = readingsRepository.findAllByDateAndCid(payload.getDate(),userdata.getCid());
         JSONObject result = new JSONObject();
-        if (datereadings.size() != 0 || (payload.getDate().compareTo(LocalDate.now()) != 0)) {
+        if (datereadings.size() != 0 || (payload.getDate().compareTo(LocalDate.now().minusDays(1)) != 0)) {
             result.put("alreadysaved",true);
             List<readings> existdata = readingsRepository.findAllByDateAndCid(payload.getDate(),userdata.getCid());
             result.put("readings",existdata);
@@ -58,7 +58,7 @@ public class readingsController {
         String message = "Data already exist";
         List<pumps> pumpsdata  = PumpsRepository.findAllByCid(userdata.getCid());
         System.out.println(LocalDate.now());
-        List <readings> datereadings = readingsRepository.findAllByDateAndCid(LocalDate.now(),userdata.getCid());
+        List <readings> datereadings = readingsRepository.findAllByDateAndCid(LocalDate.now().minusDays(1),userdata.getCid());
         if (datereadings.size() == 0) {
             for (pumps eachpump: pumpsdata) {
                 for (readings eachreading : data) {

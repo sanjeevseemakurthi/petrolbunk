@@ -34,7 +34,7 @@ public class engineoilsController {
         List<engineoilsstock> stockoils  = engineoilstocksRepository.findAllByCid(userdata.getCid());
         List <engineoils> dateoils = engineoilRepository.findAllByDateAndCid(payload.getDate(),userdata.getCid());
         JSONObject result = new JSONObject();
-        if (dateoils.size() != 0 || (payload.getDate().compareTo(LocalDate.now()) != 0)) {
+        if (dateoils.size() != 0 || (payload.getDate().compareTo(LocalDate.now().minusDays(1)) != 0)) {
             result.put("alreadysaved",true);
             result.put("engineoils",engineoilRepository.findAllByDateAndCid(payload.getDate(),userdata.getCid()));
         }
@@ -49,7 +49,7 @@ public class engineoilsController {
         String message = "Data already exist";
         List<engineoilsstock> enginoilstock  = engineoilstocksRepository.findAllByCid(userdata.getCid());
         System.out.println(LocalDate.now());
-        List <engineoils> dateengineoils = engineoilRepository.findAllByDateAndCid(LocalDate.now(),userdata.getCid());
+        List <engineoils> dateengineoils = engineoilRepository.findAllByDateAndCid(LocalDate.now().minusDays(1),userdata.getCid());
         if (dateengineoils.size() == 0) {
             for (engineoilsstock eachengineoilsstock: enginoilstock) {
                 for (engineoils eachoil : data) {

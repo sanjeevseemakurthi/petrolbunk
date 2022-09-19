@@ -18,7 +18,7 @@ public class account {
     private String name;
     private  String phno;
     private LocalDate date;
-    private Long balance;
+    private Double balance;
     private Long cid;
     private boolean onlyadmin;
 
@@ -83,12 +83,11 @@ public class account {
         this.date = date;
     }
 
-    public Long getBalance() {
+    public Double getBalance() {
         return balance;
     }
 
-    public void setBalance(Long balance) {
+    public void setBalance(Double balance) {
         this.balance = balance;
     }
-
 }

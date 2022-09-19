@@ -18,7 +18,7 @@ public interface accountsRepository  extends JpaRepository<account,Long> {
     List<account> findByNameAndCid(String cash, Long cid);
 
     Optional<account> findByIdAndCid(Long accountid, Long cid);
-
+    Optional<account> findByIdAndCidAndDate(Long accountid, Long cid,LocalDate date);
     List<account> findAllByCid(Long cid);
 
     List<account> findAllByCidAndOnlyadmin(Long cid, boolean onlyadmin);
