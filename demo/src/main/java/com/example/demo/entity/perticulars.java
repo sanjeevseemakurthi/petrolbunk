@@ -28,13 +28,10 @@ public class perticulars {
                 ", date=" + date +
                 ", jama=" + jama +
                 ", karchu=" + karchu +
-                ", balance=" + balance +
                 ", discription='" + discription + '\'' +
                 ", cid=" + cid +
                 '}';
     }
-
-    private Double balance;
     private String discription;
     private Long cid;
 
@@ -83,14 +80,6 @@ public class perticulars {
 
     public void setKarchu(Double karchu) {
         this.karchu = karchu;
-    }
-
-    public Double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(Double balance) {
-        this.balance = balance;
     }
 
     public String getDiscription() {

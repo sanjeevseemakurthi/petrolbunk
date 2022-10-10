@@ -17,6 +17,11 @@ public class JwtRequest {
 		return role;
 	}
 
+	public JwtRequest(String username, String password) {
+		this.username = username;
+		this.password = password;
+	}
+
 	public void setRole(String role) {
 		this.role = role;
 	}

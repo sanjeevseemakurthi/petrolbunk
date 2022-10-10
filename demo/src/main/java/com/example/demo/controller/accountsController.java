@@ -54,8 +54,9 @@ public class accountsController {
             allperticulars.remove(allperticulars.get(forindex));
         }
         JSONObject result = new JSONObject();
-        if (cash_date.size() != 0) {
-            result.put("cash", cash_date.get(0).getBalance());
+        Long cashsum = pericularsRepository.sumafteropening(data.getDate(), userdata.getCid(),cash_id.get(0).getId());
+        if (cash_id.size() != 0) {
+            result.put("cash",cash_id.get(0).getOpeningbalance() + (cashsum == null ? 0l :cashsum));
         } else {
             result.put("cash", 0);
         }
@@ -73,12 +74,11 @@ public class accountsController {
         List<perticulars> data = dateanddata.getData();
         LocalDate fordate = dateanddata.getDate();
         perticulars cash_perticular = new perticulars();
-        perticulars onlycashonday = deleteallperticulars(fordate,userdata);
+        deleteallperticulars(fordate,userdata);
         for (perticulars eachdata : data) {
             Optional<account> eachaccount = accountsRepository.findByIdAndCid(eachdata.getAccountid(),userdata.getCid());
             if (!eachaccount.get().getName().equals("cash")) {
                 eachaccount.get().setBalance(eachaccount.get().getBalance() - eachdata.getJama() + eachdata.getKarchu());
-                eachdata.setBalance(eachaccount.get().getBalance());
                 eachaccount.get().setCid(userdata.getCid());
                 eachdata.setCid(userdata.getCid());
                 accountsRepository.save(eachaccount.get());
@@ -94,23 +94,11 @@ public class accountsController {
         cash_perticular.setKarchu(0d);
         Optional<account> eachaccount = accountsRepository.findByIdAndCid(cash_perticular.getAccountid(), userdata.getCid());
         account account_cash = eachaccount.get();
-        account_cash.setBalance(previousdaycash.get(0).getBalance() + cash);
-        cash_perticular.setBalance(previousdaycash.get(0).getBalance() + cash);
         account_cash.setCid(userdata.getCid());
         cash_perticular.setCid(userdata.getCid());
         accountsRepository.save(account_cash);
         pericularsRepository.save(cash_perticular);
-        // end for cash
-        // change cash for next days
-        if (onlycashonday != null) {
-            double diffrence = cash_perticular.getBalance() - onlycashonday.getBalance();
-            List<perticulars> futuredatescash = pericularsRepository.findAllByCidAndDateGreaterThanAndAccountid(userdata.getCid(),fordate, cash_perticular.getAccountid());
-            for (perticulars eachdata : futuredatescash) {
-                eachdata.setBalance(eachdata.getBalance() + diffrence);
-                eachdata.setCid(userdata.getCid());
-                pericularsRepository.save(eachdata);
-            }
-        }
+
         //end for nextdays
         JSONObject result = new JSONObject();
         result.put("data", data);
@@ -118,23 +106,16 @@ public class accountsController {
     }
 
     // method is used to delete all the data in a day
-    public perticulars deleteallperticulars(LocalDate date,userdata userdata) {
-        List<account> cash_id = accountsRepository.findByNameAndCid("cash",userdata.getCid());
-        List<perticulars> cash_date = pericularsRepository.findAllByAccountidAndDateAndCid(cash_id.get(0).getId(), date, userdata.getCid());
-        if (cash_date.size() != 0) {
+    public void deleteallperticulars(LocalDate date,userdata userdata) {
             List<perticulars> dayperticulars = pericularsRepository.findByDateAndCid(date, userdata.getCid());
             for (perticulars eachdata : dayperticulars) {
                 Optional<account> eachaccount = accountsRepository.findByIdAndCid(eachdata.getAccountid(), userdata.getCid());
                 eachaccount.get().setBalance(eachaccount.get().getBalance() + eachdata.getJama() - eachdata.getKarchu());
-                eachdata.setBalance(eachaccount.get().getBalance());
                 eachaccount.get().setCid(userdata.getCid());
                 eachdata.setCid(userdata.getCid());
                 accountsRepository.save(eachaccount.get());
-                pericularsRepository.delete(eachdata);
             }
-            return cash_date.get(0);
-        }
-        return null;
+            pericularsRepository.deleteAllInBatch(dayperticulars);
     }
 
     @GetMapping("getaccountsonly")

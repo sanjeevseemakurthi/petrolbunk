@@ -19,11 +19,20 @@ public class account {
     private  String phno;
     private LocalDate date;
     private Double balance;
+    private Double openingbalance;
     private Long cid;
     private boolean onlyadmin;
 
     public boolean isOnlyadmin() {
         return onlyadmin;
+    }
+
+    public Double getOpeningbalance() {
+        return openingbalance;
+    }
+
+    public void setOpeningbalance(Double openingbalance) {
+        this.openingbalance = openingbalance;
     }
 
     @Override
@@ -34,6 +43,7 @@ public class account {
                 ", phno='" + phno + '\'' +
                 ", date=" + date +
                 ", balance=" + balance +
+                ", openingbalance=" + openingbalance +
                 ", cid=" + cid +
                 ", onlyadmin=" + onlyadmin +
                 '}';

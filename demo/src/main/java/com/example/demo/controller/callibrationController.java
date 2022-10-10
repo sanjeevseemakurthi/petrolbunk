@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 
 import com.example.demo.Requests.Datepayload;
+import com.example.demo.Requests.dateRange;
 import com.example.demo.entity.account;
 import com.example.demo.entity.calibration;
 import com.example.demo.jwtauth.JWTUtility;
@@ -49,6 +50,16 @@ public class callibrationController {
         test.add(new nametype("discription","Text"));
         result.put("editable", test);
         result.put("data",calibrationRepository.findAllByCid(userdata.getCid()));
+        return result.toString();
+    }
+    @PostMapping("postcallibdetails")
+    public String getpostcallibrations(@RequestHeader(value = "Authorization") String authorization, @RequestBody dateRange payload) {
+        String Token = authorization.replace("Bearer ", "");
+        String username = jwtUtility.getUsernameFromToken(Token);
+        userdata userdata = userdetailsRepository.findByUsername(username);
+        JSONObject result = new JSONObject();
+        result.put("data",calibrationRepository.findByCidAndDateGreaterThanEqualAndNextdateLessThanEqual(
+                userdata.getCid(),payload.getInitialdate(),payload.getFinaldate()));
         return result.toString();
     }
     @PostMapping("calibratioeditandsave")

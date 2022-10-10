@@ -38,11 +38,11 @@ public class AuthController {
 		company companydata = new company();
 		companydata.setLocation(newcomapnydata.getLocation());
 		companydata.setName(newcomapnydata.getName());
-		for (String user: userdetailsRepository.findallusernames()) {
-		if (user.equals(newcomapnydata.getUsername())); {
-				return  "{Status: 'username already Exist'}";
-			}
-		}
+//		for (String user: userdetailsRepository.findallusernames()) {
+//		if (newcomapnydata.getUsername().equals(user)); {
+//				return  "{Status: 'username already Exist'}";
+//			}
+//		}
 		company stored = companyRepository.save(companydata);
 		userdata.setPassword(passwordEncoder.encode(newcomapnydata.getPassword()));
 		userdata.setUsername(newcomapnydata.getUsername());
